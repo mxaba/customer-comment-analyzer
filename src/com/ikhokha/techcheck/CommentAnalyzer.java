@@ -24,16 +24,18 @@ public class CommentAnalyzer {
 			
 			String line = null;
 			while ((line = reader.readLine()) != null) {
+
+				String lineLower = line.toLowerCase();
 				
-				if (line.length() < 15) {
+				if (lineLower.length() < 15) {
 					
 					incOccurrence(resultsMap, "SHORTER_THAN_15");
 
-				} else if (line.contains("Mover")) {
+				} else if (lineLower.contains("mover")) {
 
 					incOccurrence(resultsMap, "MOVER_MENTIONS");
 				
-				} else if (line.contains("Shaker")) {
+				} else if (lineLower.contains("shaker")) {
 
 					incOccurrence(resultsMap, "SHAKER_MENTIONS");
 				
