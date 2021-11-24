@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.ikhokha.techcheck.metrics.Command;
@@ -28,6 +27,8 @@ public class CommentAnalyzer {
 				commandPassed.keepCounter(line, "MOVER", "MOVER_MENTIONS");
 				commandPassed.keepCounter(line, "SHAKER", "SHAKER_MENTIONS");
 				commandPassed.keepCounter(line, "15", "SHORTER_THAN_15");
+				commandPassed.keepCounter(line, "?", "QUESTIONS");
+				commandPassed.keepCounter(line, "SPaM", "SPAM");
 			}
 			
 		} catch (FileNotFoundException e) {
