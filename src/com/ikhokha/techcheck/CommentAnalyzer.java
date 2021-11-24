@@ -20,32 +20,14 @@ public class CommentAnalyzer {
 	
 	public Map<String, Integer> analyze() {
 		
-		Command commandPassed = new Command();
-		Map<String, Integer> resultsMap = new HashMap<>();
-		
+		Command commandPassed = new Command();		
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				commandPassed.keepCounter(line, "Mover", "MOVER_MENTIONS");
+				commandPassed.keepCounter(line, "MOVER", "MOVER_MENTIONS");
 				commandPassed.keepCounter(line, "SHAKER", "SHAKER_MENTIONS");
-
-				// String lineLower = line.toUpperCase();
-				
-				// if (lineLower.length() < 15) {
-					
-				// 	incOccurrence(resultsMap, "SHORTER_THAN_15");
-
-				// } 
-				// if (lineLower.contains("MOVER")) {
-
-				// 	incOccurrence(resultsMap, "MOVER_MENTIONS");
-				
-				// } if (lineLower.contains("SHAKER")) {
-
-				// 	incOccurrence(resultsMap, "SHAKER_MENTIONS");
-				
-				// }
+				commandPassed.keepCounter(line, "15", "SHORTER_THAN_15");
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -55,20 +37,6 @@ public class CommentAnalyzer {
 			System.out.println("IO Error processing file: " + file.getAbsolutePath());
 			e.printStackTrace();
 		}
-		
 		return commandPassed.getCounterMap();
-		
 	}
-	
-	/**
-	 * This method increments a counter by 1 for a match type on the countMap. Uninitialized keys will be set to 1
-	 * @param countMap the map that keeps track of counts
-	 * @param key the key for the value to increment
-	 */
-	// private void incOccurrence(Map<String, Integer> countMap, String key) {
-		
-	// 	countMap.putIfAbsent(key, 0);
-	// 	countMap.put(key, countMap.get(key) + 1);
-	// }
-
 }
