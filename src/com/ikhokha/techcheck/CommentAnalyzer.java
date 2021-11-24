@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ikhokha.techcheck.metrics.Command;
+
 public class CommentAnalyzer {
 	
 	private File file;
@@ -18,28 +20,32 @@ public class CommentAnalyzer {
 	
 	public Map<String, Integer> analyze() {
 		
+		Command commandPassed = new Command();
 		Map<String, Integer> resultsMap = new HashMap<>();
 		
 		try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 			
 			String line = null;
 			while ((line = reader.readLine()) != null) {
+				commandPassed.keepCounter(line, "Mover", "MOVER_MENTIONS");
+				commandPassed.keepCounter(line, "SHAKER", "SHAKER_MENTIONS");
 
-				String lineLower = line.toUpperCase();
+				// String lineLower = line.toUpperCase();
 				
-				if (lineLower.length() < 15) {
+				// if (lineLower.length() < 15) {
 					
-					incOccurrence(resultsMap, "SHORTER_THAN_15");
+				// 	incOccurrence(resultsMap, "SHORTER_THAN_15");
 
-				} if (lineLower.contains("MOVER")) {
+				// } 
+				// if (lineLower.contains("MOVER")) {
 
-					incOccurrence(resultsMap, "MOVER_MENTIONS");
+				// 	incOccurrence(resultsMap, "MOVER_MENTIONS");
 				
-				} if (lineLower.contains("SHAKER")) {
+				// } if (lineLower.contains("SHAKER")) {
 
-					incOccurrence(resultsMap, "SHAKER_MENTIONS");
+				// 	incOccurrence(resultsMap, "SHAKER_MENTIONS");
 				
-				}
+				// }
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -50,7 +56,7 @@ public class CommentAnalyzer {
 			e.printStackTrace();
 		}
 		
-		return resultsMap;
+		return commandPassed.getCounterMap();
 		
 	}
 	
@@ -59,10 +65,10 @@ public class CommentAnalyzer {
 	 * @param countMap the map that keeps track of counts
 	 * @param key the key for the value to increment
 	 */
-	private void incOccurrence(Map<String, Integer> countMap, String key) {
+	// private void incOccurrence(Map<String, Integer> countMap, String key) {
 		
-		countMap.putIfAbsent(key, 0);
-		countMap.put(key, countMap.get(key) + 1);
-	}
+	// 	countMap.putIfAbsent(key, 0);
+	// 	countMap.put(key, countMap.get(key) + 1);
+	// }
 
 }

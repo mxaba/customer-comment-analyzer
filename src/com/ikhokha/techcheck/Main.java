@@ -33,7 +33,7 @@ public class Main {
 	private static void addReportResults(Map<String, Integer> source, Map<String, Integer> target) {
 
 		for (var entry : source.entrySet()) {
-			System.out.println(target.containsKey(entry.getKey()));
+			// System.out.println(target.containsKey(entry.getKey()));
 			if (target.containsKey(entry.getKey()) == true){
 				target.put(entry.getKey(), entry.getValue() + target.get(entry.getKey()));
 			} else {
