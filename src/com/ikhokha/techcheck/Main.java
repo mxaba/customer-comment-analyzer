@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class Main {
-	private static final int numberOfThreads = 2;
+	private static final int numberOfThreads = 1;
 	public static void main(String[] args) {
 		
 		Map<String, Integer> totalResults = new HashMap<>();
