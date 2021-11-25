@@ -25,13 +25,11 @@ public class Main {
 			futureResultList.add(executor.submit(new CommentAnalyzer(commentFile)));
 		}
 		futureResultList.forEach(result->{
-			try {
-				addReportResults(result.get(), totalResults);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-			}
+				try {
+					addReportResults(result.get(), totalResults);
+				} catch (InterruptedException | ExecutionException e) {
+					e.printStackTrace();
+				}
 		});
 
 		executor.shutdown();
