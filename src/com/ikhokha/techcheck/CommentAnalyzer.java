@@ -6,10 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import com.ikhokha.techcheck.metrics.Command;
 
-public class CommentAnalyzer {
+public class CommentAnalyzer implements Callable<Map<String, Integer>> {
 	
 	private File file;
 	
@@ -39,5 +40,11 @@ public class CommentAnalyzer {
 			e.printStackTrace();
 		}
 		return commandPassed.getCounterMap();
+	}
+
+	@Override
+	public Map<String, Integer> call() throws Exception {
+		
+		return analyze();
 	}
 }
